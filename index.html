@@ -142,14 +142,42 @@
     /* Table of Contents */
     nav.toc {
       position: sticky;
-      top: 20px;
+      top: 80px;
       margin: 32px 0;
       background: var(--card);
       border: 1px solid var(--line);
       border-radius: 16px;
       padding: 24px;
-      box-shadow: 0 2px 12px var(--shadow);
-      z-index: 100;
+      box-shadow: 0 4px 20px var(--shadow);
+      z-index: 99;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      transition: all 0.3s ease;
+    }
+
+    /* Scrollbar styling for TOC */
+    nav.toc::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    nav.toc::-webkit-scrollbar-track {
+      background: var(--bg);
+      border-radius: 10px;
+    }
+
+    nav.toc::-webkit-scrollbar-thumb {
+      background: var(--muted);
+      border-radius: 10px;
+    }
+
+    nav.toc::-webkit-scrollbar-thumb:hover {
+      background: var(--accent);
+    }
+
+    /* Enhanced sticky state */
+    nav.toc.is-stuck {
+      box-shadow: 0 8px 32px var(--shadow-md);
+      border-color: var(--accent);
     }
 
     nav.toc h3 {
@@ -157,6 +185,9 @@
       margin-bottom: 16px;
       color: var(--ink);
       font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
 
     .toc-grid {
@@ -178,6 +209,7 @@
       gap: 12px;
       transition: all 0.2s ease;
       font-weight: 500;
+      font-size: 14px;
     }
 
     .toc a:hover {
@@ -186,10 +218,17 @@
       background: var(--accent-light);
     }
 
+    .toc a.active {
+      border-color: var(--accent);
+      background: var(--accent-light);
+      font-weight: 600;
+    }
+
     .toc-number {
       color: var(--accent);
       font-weight: 600;
       min-width: 24px;
+      font-size: 14px;
     }
 
     .toc-arrow {
@@ -572,8 +611,10 @@
       }
 
       nav.toc {
-        position: relative;
-        top: 0;
+        position: sticky;
+        top: 70px;
+        margin: 24px 0;
+        padding: 20px;
       }
 
       .toc-grid {
@@ -669,7 +710,7 @@
 
     <!-- Table of Contents -->
     <nav class="toc">
-      <h3>📑 Table of Contents</h3>
+      <h3>📌 Table of Contents</h3>
       <div class="toc-grid">
         <a href="#positioning"><span class="toc-number">1</span> Market Positioning <span class="toc-arrow">→</span></a>
         <a href="#mistakes"><span class="toc-number">2</span> Common Mistakes <span class="toc-arrow">→</span></a>
@@ -1541,6 +1582,10 @@ Contribution % = Contribution / Revenue</pre>
       
       const themeText = document.querySelector('.theme-text');
       themeText.textContent = savedTheme === 'dark' ? 'Light Mode' : 'Dark Mode';
+
+      // Initialize scroll observers
+      initScrollObservers();
+      stickyTOCObserver();
     });
 
     // Smooth scroll with offset for sticky nav
@@ -1558,6 +1603,56 @@ Contribution % = Contribution / Revenue</pre>
         }
       });
     });
+
+    // Active section highlighting in TOC
+    function initScrollObservers() {
+      const sections = document.querySelectorAll('section[id]');
+      const tocLinks = document.querySelectorAll('.toc a');
+
+      const observerOptions = {
+        root: null,
+        rootMargin: '-20% 0px -35% 0px',
+        threshold: 0
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            
+            // Remove active class from all links
+            tocLinks.forEach(link => link.classList.remove('active'));
+            
+            // Add active class to current link
+            const activeLink = document.querySelector(`.toc a[href="#${id}"]`);
+            if (activeLink) {
+              activeLink.classList.add('active');
+            }
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => observer.observe(section));
+    }
+
+    // Add visual feedback when TOC sticks
+    function stickyTOCObserver() {
+      const toc = document.querySelector('nav.toc');
+      if (!toc) return;
+
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.intersectionRatio < 1) {
+            toc.classList.add('is-stuck');
+          } else {
+            toc.classList.remove('is-stuck');
+          }
+        },
+        { threshold: [1], rootMargin: '-1px 0px 0px 0px' }
+      );
+
+      observer.observe(toc);
+    }
   </script>
 </body>
 </html>
