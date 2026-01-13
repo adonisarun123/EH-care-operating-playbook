@@ -1,0 +1,1009 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EzyHelpers Care Company — Full Operating Playbook (Elderly Care + Baby Care)</title>
+  <style>
+    :root{
+      --bg:#0b0f17;
+      --card:#111827;
+      --ink:#e5e7eb;
+      --muted:#9ca3af;
+      --line:#243042;
+      --accent:#22c55e; /* Ezy-ish green */
+      --accent2:#60a5fa;
+      --warn:#f59e0b;
+      --bad:#ef4444;
+      --good:#10b981;
+      --paper:#ffffff;
+      --paper-ink:#111827;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background:linear-gradient(180deg,var(--bg),#06080d);
+      color:var(--ink);
+      line-height:1.5;
+    }
+    a{color:inherit}
+    .container{max-width:1100px;margin:0 auto;padding:28px 18px 80px}
+    header.hero{
+      border:1px solid var(--line);
+      background: radial-gradient(1200px 600px at 20% 10%, rgba(34,197,94,.20), transparent 55%),
+                  radial-gradient(1200px 600px at 80% 30%, rgba(96,165,250,.16), transparent 60%),
+                  rgba(17,24,39,.85);
+      border-radius:18px;
+      padding:26px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    header.hero h1{margin:0 0 8px;font-size:28px;letter-spacing:.2px}
+    header.hero p{margin:0;color:var(--muted);max-width:72ch}
+    .badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.25);
+      color:var(--ink);
+    }
+    .badge strong{color:#fff}
+    nav.toc{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap:10px;
+    }
+    @media (max-width: 760px){
+      nav.toc{grid-template-columns:1fr}
+    }
+    .toc a{
+      text-decoration:none;
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.65);
+      border-radius:12px;
+      padding:10px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      transition:transform .08s ease, border-color .12s ease;
+    }
+    .toc a:hover{transform:translateY(-1px);border-color:rgba(34,197,94,.55)}
+    .toc span{color:var(--muted);font-size:12px}
+    .grid{
+      margin-top:18px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+    }
+    @media (max-width: 980px){
+      .grid{grid-template-columns:1fr}
+    }
+    .card{
+      border:1px solid var(--line);
+      background:rgba(17,24,39,.70);
+      border-radius:16px;
+      padding:16px 16px;
+    }
+    h2{
+      margin:26px 0 10px;
+      font-size:20px;
+    }
+    h3{margin:18px 0 8px;font-size:16px}
+    p{margin:8px 0}
+    .muted{color:var(--muted)}
+    .divider{height:1px;background:var(--line);margin:14px 0}
+    .pill{
+      display:inline-block;
+      padding:2px 8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      font-size:12px;
+      color:var(--muted);
+      margin-right:6px;
+    }
+    .callout{
+      border:1px solid rgba(34,197,94,.40);
+      background:rgba(34,197,94,.08);
+      border-radius:14px;
+      padding:12px 12px;
+    }
+    .callout.warn{
+      border-color:rgba(245,158,11,.45);
+      background:rgba(245,158,11,.08);
+    }
+    .callout.bad{
+      border-color:rgba(239,68,68,.45);
+      background:rgba(239,68,68,.06);
+    }
+    ul{margin:8px 0 8px 18px}
+    li{margin:4px 0}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.16);
+    }
+    th, td{
+      padding:10px 10px;
+      border-bottom:1px solid rgba(36,48,66,.75);
+      vertical-align:top;
+      font-size:13px;
+    }
+    th{color:#fff;text-align:left;background:rgba(0,0,0,.18)}
+    tr:last-child td{border-bottom:none}
+    .kpi{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+    .kpi .mini{
+      flex: 1 1 190px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(0,0,0,.14);
+    }
+    .mini b{display:block;font-size:12px;color:var(--muted);font-weight:600;margin-bottom:4px}
+    .mini span{font-size:14px}
+    details{
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:rgba(0,0,0,.12);
+      padding:10px 12px;
+      margin:10px 0;
+    }
+    details summary{
+      cursor:pointer;
+      font-weight:650;
+      color:#fff;
+    }
+    .checklist label{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
+    .checklist input{margin-top:3px}
+    code, pre{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size:12px;
+      color:#eaf2ff;
+    }
+    pre{
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      overflow:auto;
+    }
+    .flow{
+      display:grid;
+      grid-template-columns: repeat(6, minmax(0,1fr));
+      gap:10px;
+      margin-top:12px;
+    }
+    @media (max-width: 980px){
+      .flow{grid-template-columns:1fr}
+    }
+    .step{
+      border:1px dashed rgba(96,165,250,.45);
+      background:rgba(96,165,250,.08);
+      border-radius:14px;
+      padding:10px;
+      position:relative;
+      min-height:76px;
+    }
+    .step b{display:block;font-size:12px;color:#fff;margin-bottom:4px}
+    .step span{color:var(--muted);font-size:12px}
+    .org{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:10px;
+      margin-top:10px;
+    }
+    @media (max-width: 760px){
+      .org{grid-template-columns:1fr}
+    }
+    .org .box{
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:12px;
+      background:rgba(0,0,0,.12);
+    }
+    .box h4{margin:0 0 6px;font-size:14px}
+    .box .muted{font-size:12px}
+    .footer{
+      margin-top:30px;
+      color:var(--muted);
+      font-size:12px;
+      text-align:center;
+    }
+
+    /* Print */
+    @media print{
+      body{background:var(--paper);color:var(--paper-ink)}
+      .container{padding:0}
+      header.hero, .card, details, table{background:var(--paper) !important;color:var(--paper-ink) !important}
+      header.hero{border:1px solid #cbd5e1}
+      .card, details, table{border:1px solid #cbd5e1}
+      .toc{display:none}
+      .badge{border:1px solid #cbd5e1;color:#111827;background:#fff}
+      .muted{color:#374151}
+      .callout{border-color:#86efac;background:#ecfdf5}
+      .callout.warn{border-color:#fcd34d;background:#fffbeb}
+      .callout.bad{border-color:#fecaca;background:#fff1f2}
+      pre{color:#111827;border:1px solid #cbd5e1;background:#f8fafc}
+      a{text-decoration:none}
+      .footer{color:#374151}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="hero">
+      <h1>EzyHelpers Care Company — Full Operating Playbook</h1>
+      <p>
+        A standalone, execution-ready blueprint to build a highly organized, payroll-first home-care company focused on
+        <b>Elderly Care</b> + <b>Baby Care</b> — optimized for trust, reliability, supervision, and scalable unit economics.
+      </p>
+      <div class="badges">
+        <div class="badge"><strong>Positioning:</strong> Managed Care at Home</div>
+        <div class="badge"><strong>Core Moat:</strong> Training + Supervision + Accountability</div>
+        <div class="badge"><strong>Operating Model:</strong> Payroll / Hybrid Payroll</div>
+        <div class="badge"><strong>Primary KPI:</strong> Shift Fulfillment + Replacement SLA</div>
+      </div>
+
+      <nav class="toc" aria-label="Table of contents">
+        <a href="#northstar"><b>North Star</b><span>Category, promise, differentiation</span></a>
+        <a href="#catalog"><b>Service Catalog</b><span>Products, packages, SLAs</span></a>
+        <a href="#model"><b>Operating Model</b><span>Payroll, hybrid, bench</span></a>
+        <a href="#org"><b>Org & Roles</b><span>Supervisor ratios, key hires</span></a>
+        <a href="#workflows"><b>Core Workflows</b><span>Lead → Care → Renewal</span></a>
+        <a href="#sops"><b>SOP Library</b><span>Step-by-step execution</span></a>
+        <a href="#templates"><b>Templates</b><span>Care plan, logs, incident</span></a>
+        <a href="#kpis"><b>KPIs & Scorecards</b><span>Reliability, quality, growth</span></a>
+        <a href="#economics"><b>Unit Economics</b><span>Pricing, margin, utilization</span></a>
+        <a href="#plan"><b>90-Day Launch Plan</b><span>Pilot → 100 active clients</span></a>
+      </nav>
+    </header>
+
+    <section id="northstar">
+      <h2>1) North Star: What You’re Building</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Category Definition</h3>
+          <p><span class="pill">Not staffing</span> <span class="pill">Not marketplace</span> <span class="pill">Not “maid on demand”</span></p>
+          <p>
+            You are building <b>Managed Care at Home</b>: outcomes-led home-care for elderly and babies with structured SOPs,
+            trained professionals, and supervision — where the company owns accountability end-to-end.
+          </p>
+          <div class="callout">
+            <b>Your promise (non-negotiable):</b>
+            <ul>
+              <li><b>Trust:</b> verified caregivers + safety checks + clear boundaries</li>
+              <li><b>Reliability:</b> attendance control + backup bench + replacement SLA</li>
+              <li><b>Quality:</b> training + checklists + audits + incident system</li>
+              <li><b>Accountability:</b> payroll model + supervisor ownership + escalation</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <h3>How You Win vs. “Fast Service” Players</h3>
+          <ul>
+            <li><b>Shift fulfillment</b> beats “fast booking” — families care about continuity.</li>
+            <li><b>Supervised care</b> beats “just supply” — a care plan + audits changes outcomes.</li>
+            <li><b>Training & certification</b> beats “any worker” — premium segments demand it.</li>
+            <li><b>Bench capacity</b> beats “apologies” — you have replacement readiness.</li>
+          </ul>
+          <div class="callout warn">
+            <b>What NOT to become:</b> a generic domestic help agency with “elder care” and “baby care” labels.
+            You must run this like a care operator (hospital-grade process, home-grade warmth).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog">
+      <h2>2) Service Catalog: Productize the Offering</h2>
+      <div class="card">
+        <h3>A) Elderly Care Packages</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Who it fits</th>
+              <th>Scope (examples)</th>
+              <th>Minimum standards</th>
+              <th>Replacement SLA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Companion Care</b></td>
+              <td>Independent elders needing support & company</td>
+              <td>Mobility support, meals assist, conversation, routine support, reminders</td>
+              <td>Trained for fall risk basics + communication + hygiene</td>
+              <td>Within 24 hours (or as per shift type)</td>
+            </tr>
+            <tr>
+              <td><b>Assisted Daily Living</b></td>
+              <td>Needs help with bathing/hygiene/feeding</td>
+              <td>Hygiene support, toileting support (as per consent), feeding, basic vitals logging if required</td>
+              <td>Strict hygiene SOP + consent + boundaries</td>
+              <td>Within 12–24 hours</td>
+            </tr>
+            <tr>
+              <td><b>Post-Hospital Recovery</b></td>
+              <td>Discharge support, short-term intensive</td>
+              <td>Medication reminders, mobility/physio assistance (non-clinical), wound-care support only if trained & permitted</td>
+              <td>Supervisor onboarding visit + daily check-ins</td>
+              <td>Within 6–12 hours</td>
+            </tr>
+            <tr>
+              <td><b>Night Care</b></td>
+              <td>Night monitoring, fall risk, dementia support</td>
+              <td>Night routine, assisted restroom, monitoring, escalation readiness</td>
+              <td>Low phone usage policy + alertness check</td>
+              <td>Within 4–8 hours</td>
+            </tr>
+            <tr>
+              <td><b>Dementia Support</b></td>
+              <td>Alzheimer’s/dementia cases</td>
+              <td>Routine reinforcement, safety monitoring, calm communication, supervision-first</td>
+              <td>Special training + supervisor audit cadence</td>
+              <td>Within 6–12 hours</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top:18px">B) Baby Care Packages</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Package</th>
+              <th>Who it fits</th>
+              <th>Scope (examples)</th>
+              <th>Safety standards</th>
+              <th>Replacement SLA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Newborn Care (0–3 months)</b></td>
+              <td>High-value segment; sleep, feeding routines</td>
+              <td>Hygiene, bottle prep (as per family), burping, sleep routine, mother support</td>
+              <td>No phone while holding baby; safe handling; hygiene & sanitization</td>
+              <td>Within 4–12 hours</td>
+            </tr>
+            <tr>
+              <td><b>Infant Care (3–12 months)</b></td>
+              <td>Routine + engagement</td>
+              <td>Feeding routine, naps, diapering, play, safety watch</td>
+              <td>Safe play, choking awareness basics</td>
+              <td>Within 6–12 hours</td>
+            </tr>
+            <tr>
+              <td><b>Toddler Care (1–4 years)</b></td>
+              <td>Active child; safety critical</td>
+              <td>Play + engagement, basic meal support, hygiene, outdoor supervision</td>
+              <td>Child-proofing checklist adherence</td>
+              <td>Within 12–24 hours</td>
+            </tr>
+            <tr>
+              <td><b>Recovery + Home Support (Japa-style)</b></td>
+              <td>Mother recovery + baby routine support</td>
+              <td>Light mother support, meal support (if agreed), baby routine</td>
+              <td>Scope boundaries clearly documented</td>
+              <td>Within 12–24 hours</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="callout" style="margin-top:14px">
+          <b>Design principle:</b> Sell <b>packages</b>, not “helpers.” Packages come with SOPs, logs, audits, and SLAs — which justifies premium pricing and reduces disputes.
+        </div>
+      </div>
+    </section>
+
+    <section id="model">
+      <h2>3) Operating Model: Payroll-First Execution</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Model A — Full Payroll (Maximum Control)</h3>
+          <ul>
+            <li>Caregivers are employees. You own training, discipline, attendance, replacements.</li>
+            <li>Best for: elderly, newborn, night shifts, repeat long-tenure clients.</li>
+            <li>Requires: strong utilization planning + bench budget.</li>
+          </ul>
+          <div class="divider"></div>
+          <h3>Model B — Hybrid Payroll (Scale + Control)</h3>
+          <ul>
+            <li><b>Core payroll team</b>: A-grade caregivers + supervisors + floaters.</li>
+            <li><b>Extended supply</b> via partners ONLY after your verification + training + scoring.</li>
+            <li>Use to expand zones/cities without quality collapse.</li>
+          </ul>
+          <div class="callout warn">
+            <b>Rule:</b> Baby care + dementia care should be <b>payroll-only</b> in the early phase. This protects brand trust.
+          </div>
+        </div>
+        <div class="card">
+          <h3>Bench & Utilization Rules (Make Payroll Profitable)</h3>
+          <div class="kpi">
+            <div class="mini"><b>Target Utilization</b><span>75–85% billable hours (payroll caregivers)</span></div>
+            <div class="mini"><b>Bench / Floaters</b><span>10–15% capacity reserved for replacements</span></div>
+            <div class="mini"><b>Supervisor Ratio</b><span>1 per 25–35 active caregivers</span></div>
+            <div class="mini"><b>Complaint Rate</b><span>&lt; 2 per 100 shifts (target)</span></div>
+          </div>
+          <p class="muted" style="margin-top:10px">
+            Payroll works when: pricing includes supervision + bench, and scheduling keeps utilization high without burning out caregivers.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="org">
+      <h2>4) Org Structure & Roles</h2>
+      <div class="card">
+        <h3>Core Team (Minimum for a premium care operator)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Purpose</th>
+              <th>Key KPIs</th>
+              <th>When to hire</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><b>Care Ops Head</b></td>
+              <td>Owns service reliability, escalations, SOP adherence</td>
+              <td>Shift fulfillment, replacement SLA, complaint rate</td>
+              <td>Day 1</td>
+            </tr>
+            <tr>
+              <td><b>Trainer + Quality Lead</b></td>
+              <td>Training, certification, audits, quality improvements</td>
+              <td>Training pass rate, audit score, incident reduction</td>
+              <td>Day 1–15</td>
+            </tr>
+            <tr>
+              <td><b>Care Supervisors</b></td>
+              <td>Field supervision, audits, home onboarding checks</td>
+              <td>Caregiver score, audit cadence, resolution time</td>
+              <td>From first 25 caregivers</td>
+            </tr>
+            <tr>
+              <td><b>Scheduler / Dispatcher</b></td>
+              <td>Shift planning, attendance control, replacements</td>
+              <td>Fulfillment %, SLA success %, unfilled shifts</td>
+              <td>Day 1–15</td>
+            </tr>
+            <tr>
+              <td><b>Customer Success</b></td>
+              <td>Expectation setting, renewals, feedback, family comms</td>
+              <td>NPS, renewal %, complaint prevention</td>
+              <td>From 20 active clients</td>
+            </tr>
+            <tr>
+              <td><b>Field Ops</b></td>
+              <td>Verification, joining, docs, home visit support</td>
+              <td>Verification TAT, joining rate, doc completeness</td>
+              <td>From 30 caregivers</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>Suggested Org Map (early stage)</h3>
+        <div class="org">
+          <div class="box">
+            <h4>Leadership</h4>
+            <div class="muted">Care Business Head / Founder</div>
+            <ul>
+              <li>Owns P&amp;L, pricing, brand trust</li>
+              <li>Defines SLAs, service lines, expansion</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Operations</h4>
+            <div class="muted">Care Ops Head → Scheduler/Dispatcher → Supervisors → Caregivers</div>
+            <ul>
+              <li>Shift fulfillment + replacements</li>
+              <li>Escalations + incident management</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Quality & Training</h4>
+            <div class="muted">Trainer/Quality Lead → Audit Cadence → Certification</div>
+            <ul>
+              <li>SOP creation & updates</li>
+              <li>Audit scores + retraining loops</li>
+            </ul>
+          </div>
+          <div class="box">
+            <h4>Customer Success</h4>
+            <div class="muted">CS → Renewals → Referrals</div>
+            <ul>
+              <li>Expectation setting</li>
+              <li>Renewal + NPS + referral pipeline</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="workflows">
+      <h2>5) Core Workflows (Operating System)</h2>
+      <div class="card">
+        <h3>End-to-End Care Journey</h3>
+        <div class="flow" aria-label="Care workflow">
+          <div class="step"><b>1) Lead Intake</b><span>Need capture + urgency + package fit</span></div>
+          <div class="step"><b>2) Assessment</b><span>Home/phone assessment + risk flags</span></div>
+          <div class="step"><b>3) Care Plan</b><span>Routine + boundaries + escalation map</span></div>
+          <div class="step"><b>4) Match & Deploy</b><span>Caregiver shortlist + trial onboarding</span></div>
+          <div class="step"><b>5) Daily Operations</b><span>Attendance + daily logs + check-ins</span></div>
+          <div class="step"><b>6) Audit & Renew</b><span>Supervisor audits + NPS + renewal</span></div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>Replacement Workflow (SLA-driven)</h3>
+        <div class="flow">
+          <div class="step"><b>Trigger</b><span>Leave / no-show / family request / mismatch</span></div>
+          <div class="step"><b>Triage</b><span>Severity + time window + package rules</span></div>
+          <div class="step"><b>Dispatch</b><span>Floater first → bench → partner</span></div>
+          <div class="step"><b>Confirm</b><span>Family confirmation + ETA + ID share</span></div>
+          <div class="step"><b>Handover</b><span>Care plan + notes shared to replacement</span></div>
+          <div class="step"><b>Close</b><span>Post-shift check + ticket closure</span></div>
+        </div>
+
+        <div class="callout bad" style="margin-top:14px">
+          <b>Hard rule:</b> Do not “figure out later.” Every service delivery must run through:
+          <b>Attendance → Daily Log → Audit → Escalation</b>. This is what makes you a “care company,” not a placement firm.
+        </div>
+      </div>
+    </section>
+
+    <section id="sops">
+      <h2>6) SOP Library (Step-by-step)</h2>
+
+      <div class="card">
+        <details open>
+          <summary>SOP 1 — Lead Intake & Qualification (TAT: 10 minutes)</summary>
+          <ul>
+            <li><b>Capture:</b> location, package needed, shift type (day/night/live-in), start date, language preference</li>
+            <li><b>Risk flags:</b> newborn, dementia, post-surgery, aggressive behavior history, pets, smoking, cameras policy</li>
+            <li><b>Set expectations:</b> verification, training-only caregivers, replacement SLA, trial rules</li>
+            <li><b>Next step:</b> schedule assessment (phone/home) within 24 hours</li>
+          </ul>
+          <div class="callout warn"><b>Do not promise a caregiver</b> without assessment + availability check. Promise the <b>SLA</b>, not a person.</div>
+        </details>
+
+        <details>
+          <summary>SOP 2 — Assessment & Care Plan Creation (TAT: 24 hours)</summary>
+          <ul>
+            <li><b>Assessment checklist:</b> patient/child routine, mobility level, meds schedule, allergies, food preferences, fall risk, emergency contacts</li>
+            <li><b>Home safety:</b> bathroom grip support, sharp items, child-proofing, bed safety, lighting</li>
+            <li><b>Define boundaries:</b> what caregiver can/can’t do; what family must provide (supplies, safe environment)</li>
+            <li><b>Escalation map:</b> family → supervisor → ops head; emergency rules</li>
+            <li><b>Care plan output:</b> one-page plan + daily log format + special notes</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SOP 3 — Caregiver Matching & Deployment (TAT: 24–72 hours)</summary>
+          <ul>
+            <li>Match by: package fit, skill score, language, shift type tolerance, travel radius</li>
+            <li>Share <b>2–3 profiles</b> maximum; include training score + verification status</li>
+            <li>Trial onboarding: introduce caregiver + show care plan + do home rules briefing</li>
+            <li>Confirm start: shift timing, salary components (if applicable), attendance rules</li>
+          </ul>
+          <div class="callout"><b>Golden rule:</b> First day success decides renewal. Send supervisor visit/remote check-in within first 48 hours.</div>
+        </details>
+
+        <details>
+          <summary>SOP 4 — Shift Start / Shift End Ritual (Daily)</summary>
+          <h3>Shift Start (first 5 minutes)</h3>
+          <ul>
+            <li>Confirm attendance via check-in (app/WhatsApp/IVR)</li>
+            <li>Review care plan highlights</li>
+            <li>Safety scan: baby sleep area / elder fall-risk spots</li>
+            <li>Ask family: any new instruction since last shift?</li>
+          </ul>
+          <h3>Shift End (last 5 minutes)</h3>
+          <ul>
+            <li>Update daily log (food, sleep, meds reminders, mood, activities)</li>
+            <li>Hand over key notes to family</li>
+            <li>Confirm next shift timing</li>
+            <li>Raise any concerns to supervisor immediately</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SOP 5 — Attendance Control & Replacement SLA</summary>
+          <ul>
+            <li>Scheduler monitors shifts T-12 hours, T-2 hours, T+15 minutes no-show triggers</li>
+            <li>No-show rule: if caregiver misses check-in window → activate replacement ticket</li>
+            <li>Replacement order: <b>floater → bench → partner pool</b> (partner only if package allows)</li>
+            <li>Communicate to family: ETA + ID + supervisor contact</li>
+            <li>Close ticket: confirm arrival + first-hour check-in</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SOP 6 — Incident Management (Response: within 30 minutes)</summary>
+          <ul>
+            <li><b>Classify:</b> safety / medical emergency / misconduct / service mismatch / minor complaint</li>
+            <li><b>Immediate steps:</b> ensure safety; inform family; escalate to supervisor & ops head</li>
+            <li><b>Document:</b> time, what happened, witnesses, action taken, follow-up</li>
+            <li><b>Resolution:</b> caregiver retraining / replacement / warning / termination</li>
+            <li><b>Post-incident review:</b> SOP update + training loop</li>
+          </ul>
+          <div class="callout bad"><b>Non-negotiable:</b> baby care incidents must be handled with a “zero-delay” escalation path.</div>
+        </details>
+
+        <details>
+          <summary>SOP 7 — Supervisor Audit & Quality Checks</summary>
+          <ul>
+            <li>First-week audit for every new deployment</li>
+            <li>Thereafter: weekly/bi-weekly (based on package risk)</li>
+            <li>Audit covers: hygiene, care plan adherence, behavior, safety, family feedback</li>
+            <li>Score caregiver 1–5; &lt;3 triggers retraining and closer supervision</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SOP 8 — Training & Certification (Before deployment)</summary>
+          <ul>
+            <li><b>Core module:</b> hygiene, communication, boundaries, attendance, escalation</li>
+            <li><b>Elder module:</b> fall risk, mobility support, dementia basics, respectful care</li>
+            <li><b>Baby module:</b> safe handling, sanitization, sleep safety basics, choking awareness basics</li>
+            <li>Certification requires: attendance + assessment + roleplay + supervisor sign-off</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>SOP 9 — Customer Success & Renewals</summary>
+          <ul>
+            <li>Day 1: welcome + what to expect + supervisor contact</li>
+            <li>Day 3: feedback check-in</li>
+            <li>Day 7: NPS + adjustments</li>
+            <li>Day 21: renewal discussion (if monthly)</li>
+            <li>Monthly: report summary + improvement suggestions</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <section id="templates">
+      <h2>7) Templates (Copy-Paste Ready)</h2>
+      <div class="card">
+        <details>
+          <summary>Template A — One-Page Care Plan (Elder / Baby)</summary>
+          <pre>[CARE PLAN - ONE PAGE]
+Client Name:
+Address/Area:
+Package:
+Shift Timing:
+Start Date:
+
+1) Daily Routine (time blocks)
+- Morning:
+- Afternoon:
+- Evening:
+- Night:
+
+2) Key Instructions
+- Food:
+- Hygiene:
+- Mobility / Handling:
+- Medication reminders (if applicable):
+- Activities / Engagement:
+
+3) Safety Notes
+- Fall risk / child-proofing notes:
+- Allergies:
+- Do NOT do list:
+
+4) Boundaries (Scope)
+- Caregiver WILL do:
+- Caregiver will NOT do:
+- Family MUST provide:
+
+5) Escalation Map
+- Family POC:
+- Supervisor:
+- Ops Head:
+- Emergency Rule: call family first unless safety requires immediate emergency action
+
+6) Documentation
+- Daily Log required: Yes/No
+- Audit frequency: Weekly/Bi-weekly</pre>
+        </details>
+
+        <details>
+          <summary>Template B — Daily Care Log (Simple)</summary>
+          <pre>[DAILY CARE LOG]
+Date:
+Shift:
+Caregiver Name:
+
+Elder Care
+- Meals & hydration:
+- Mobility / walks:
+- Hygiene:
+- Mood / engagement:
+- Medication reminders given (time):
+- Observations / concerns:
+
+Baby Care
+- Feeding (time + quantity):
+- Diaper changes (count):
+- Nap/sleep (time + duration):
+- Bathing:
+- Play/activities:
+- Observations / concerns:
+
+End-of-shift handover notes:
+Family signature/acknowledgement (optional):</pre>
+        </details>
+
+        <details>
+          <summary>Template C — Incident Report (30-minute rule)</summary>
+          <pre>[INCIDENT REPORT]
+Ticket ID:
+Date/Time:
+Location:
+Package:
+Caregiver:
+Client:
+
+Incident Type: (Safety / Medical / Misconduct / Service mismatch / Other)
+What happened (facts only):
+Immediate action taken:
+Who was informed (name + time):
+Supervisor action:
+Ops head action:
+Resolution:
+Follow-up required:
+Preventive action / SOP update:</pre>
+        </details>
+
+        <details>
+          <summary>Template D — Home Onboarding Checklist (Supervisor)</summary>
+          <div class="checklist">
+            <label><input type="checkbox"/> Confirm client identity + address + POC numbers</label>
+            <label><input type="checkbox"/> Explain package scope + boundaries</label>
+            <label><input type="checkbox"/> Explain replacement SLA + escalation path</label>
+            <label><input type="checkbox"/> Safety scan: bathroom / stairs / sharp items / baby sleep area</label>
+            <label><input type="checkbox"/> Emergency contacts visible + shared with caregiver</label>
+            <label><input type="checkbox"/> Confirm supplies provided (sanitizer, gloves if needed, baby items)</label>
+            <label><input type="checkbox"/> Confirm daily log method (WhatsApp/app/paper)</label>
+            <label><input type="checkbox"/> Confirm “phone policy” (esp. baby care)</label>
+            <label><input type="checkbox"/> Capture special notes and add to care plan</label>
+          </div>
+        </details>
+
+        <details>
+          <summary>Template E — Replacement Ticket (Dispatcher)</summary>
+          <pre>[REPLACEMENT TICKET]
+Ticket ID:
+Created at:
+Reason: (Leave / No-show / Family request / Mismatch / Other)
+Client:
+Package:
+Shift time:
+Urgency: (Critical / High / Medium / Low)
+Replacement SLA:
+Assigned caregiver:
+ETA:
+Family informed at (time):
+ID shared: Yes/No
+Arrived at (time):
+First-hour confirmation:
+Closed at:</pre>
+        </details>
+      </div>
+    </section>
+
+    <section id="kpis">
+      <h2>8) KPIs & Scorecards (Run it like a hospital)</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Service Reliability KPIs</h3>
+          <table>
+            <thead>
+              <tr><th>KPI</th><th>Definition</th><th>Target</th><th>Owner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Shift Fulfillment %</b></td><td>Shifts successfully served / total scheduled shifts</td><td>&ge; 97%</td><td>Scheduler + Ops</td></tr>
+              <tr><td><b>Replacement SLA Success %</b></td><td>Replacements delivered within SLA</td><td>&ge; 90%</td><td>Scheduler + Supervisors</td></tr>
+              <tr><td><b>No-show Rate</b></td><td>No-shows / total shifts</td><td>&le; 1%</td><td>Ops</td></tr>
+              <tr><td><b>Complaint Rate</b></td><td>Complaints per 100 shifts</td><td>&lt; 2</td><td>Ops + CS</td></tr>
+              <tr><td><b>Incident Response Time</b></td><td>Time to first action</td><td>&le; 30 min</td><td>Supervisor + Ops</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <h3>Caregiver Strength KPIs</h3>
+          <table>
+            <thead>
+              <tr><th>KPI</th><th>Definition</th><th>Target</th><th>Owner</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><b>Utilization %</b></td><td>Billable hours / available hours</td><td>75–85%</td><td>Ops</td></tr>
+              <tr><td><b>30/90-day retention</b></td><td>% caregivers retained</td><td>&ge; 80% / &ge; 65%</td><td>Ops + HR</td></tr>
+              <tr><td><b>Training pass rate</b></td><td>Certified / total trained</td><td>&ge; 85%</td><td>Quality Lead</td></tr>
+              <tr><td><b>Audit score</b></td><td>Avg caregiver audit score (1–5)</td><td>&ge; 4.2</td><td>Supervisors</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h3>Weekly Business Review (WBR) Format</h3>
+        <ul>
+          <li><b>Reliability:</b> fulfillment %, no-shows, replacement SLA, top 5 failures + root cause</li>
+          <li><b>Quality:</b> audits completed vs planned, incident review, retraining list</li>
+          <li><b>Customer:</b> NPS trend, renewals due next 2 weeks, at-risk accounts</li>
+          <li><b>Supply:</b> caregiver pipeline, joining rate, utilization, bench status</li>
+          <li><b>Economics:</b> contribution margin per package, CAC by channel</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="economics">
+      <h2>9) Unit Economics: Make Payroll Sustainable</h2>
+      <div class="card">
+        <h3>Pricing Must Include “Reliability Costs”</h3>
+        <ul>
+          <li>Caregiver salary / shift wages</li>
+          <li>Supervisor layer + audits</li>
+          <li>Verification + training cost amortization</li>
+          <li>Bench/floaters buffer</li>
+          <li>Customer success + support</li>
+          <li>Tech/CRM + communication costs</li>
+          <li>Margin (so you can scale)</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <h3>Contribution Margin Framework (Simple)</h3>
+        <pre>Contribution Margin per Client (Monthly) =
+  Revenue from Client
+- Direct caregiver cost allocated
+- Supervisor & audit allocation
+- Replacement/bench allocation
+- Variable ops costs (calls/whatsapp/transport)
+= Contribution (₹)
+Contribution % = Contribution / Revenue</pre>
+
+        <div class="callout">
+          <b>Target gross margin guidance:</b>
+          <ul>
+            <li>Elder care: <b>35–55%</b> (depends on skill + hours)</li>
+            <li>Baby care: <b>30–50%</b> (newborn can be premium)</li>
+          </ul>
+        </div>
+
+        <div class="callout warn" style="margin-top:12px">
+          <b>Common trap:</b> underpricing replacement readiness. If you promise reliability, you must price the bench into the package.
+        </div>
+      </div>
+    </section>
+
+    <section id="trust">
+      <h2>10) Trust & Safety: Your Brand Moat</h2>
+      <div class="card">
+        <h3>Minimum Safety Standard (Before Deployment)</h3>
+        <ul>
+          <li>Police verification + identity validation</li>
+          <li>Address verification (caregiver)</li>
+          <li>Reference checks</li>
+          <li>Basic medical fitness check (where feasible)</li>
+          <li>Strict policy for baby care: <b>no phone while holding baby</b>, hygiene compliance</li>
+          <li>Clear written scope + boundaries + escalation</li>
+        </ul>
+        <div class="callout bad">
+          <b>Zero ambiguity policy:</b> If scope is unclear, disputes follow. Every client must have a signed/acknowledged scope document.
+        </div>
+      </div>
+    </section>
+
+    <section id="tech">
+      <h2>11) Tech & Tooling: Minimum Stack to Look Premium</h2>
+      <div class="card">
+        <h3>Must-have workflows (even if on WhatsApp + Sheets initially)</h3>
+        <ul>
+          <li>Lead → assessment → care plan → match → onboarding → daily logs → audits → renewal</li>
+          <li>Attendance check-in/check-out</li>
+          <li>Replacement ticketing with SLA timers</li>
+          <li>Caregiver profiles with scores + training + verification status</li>
+          <li>Incident reporting + escalation logs</li>
+        </ul>
+        <h3>Suggested evolution</h3>
+        <table>
+          <thead>
+            <tr><th>Phase</th><th>Tools</th><th>Outcome</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><b>Phase 1 (0–3 months)</b></td><td>CRM + WhatsApp templates + Sheets tracker</td><td>Process discipline + visibility</td></tr>
+            <tr><td><b>Phase 2 (3–6 months)</b></td><td>Attendance + tickets + caregiver app-lite</td><td>Reliability improvement</td></tr>
+            <tr><td><b>Phase 3 (6–12 months)</b></td><td>Full ops dashboard + audit module + renewals automation</td><td>Scale without chaos</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="plan">
+      <h2>12) 90-Day Launch Plan (Pilot → Scale)</h2>
+      <div class="card">
+        <h3>Days 1–15: Foundation</h3>
+        <ul>
+          <li>Finalize packages + SLAs + boundaries documents</li>
+          <li>Create SOPs + care plan + daily logs + incident templates</li>
+          <li>Hire: Trainer/Quality Lead + Scheduler + 1 Supervisor</li>
+          <li>Start caregiver sourcing funnel + verification process</li>
+        </ul>
+
+        <h3>Days 16–45: Pilot (20–30 active clients)</h3>
+        <ul>
+          <li>Train and certify first 30–50 caregivers</li>
+          <li>Operate in 1–2 tight zones (reduce travel chaos)</li>
+          <li>Run daily attendance and weekly audits</li>
+          <li>Track: fulfillment, replacement SLA, complaints, NPS</li>
+        </ul>
+
+        <h3>Days 46–90: Scale to 100 active clients</h3>
+        <ul>
+          <li>Add supervisors as per ratio</li>
+          <li>Build floaters bench (10–15%)</li>
+          <li>Launch partnerships with clinics/communities</li>
+          <li>Install renewal cadence + referral engine</li>
+        </ul>
+
+        <div class="callout" style="margin-top:12px">
+          <b>Scale rule:</b> Increase zones only when you can maintain the same fulfillment %, audit cadence, and replacement SLA.
+        </div>
+      </div>
+    </section>
+
+    <section id="appendix">
+      <h2>Appendix: Quick Policies (Copy into your handbook)</h2>
+      <div class="card">
+        <details>
+          <summary>Policy 1 — Phone Usage (Baby Care)</summary>
+          <ul>
+            <li>No phone usage while holding/feeding/rocking baby</li>
+            <li>Phone allowed only during designated break times</li>
+            <li>Repeated violation → warning → removal</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Policy 2 — Boundaries & Scope</summary>
+          <ul>
+            <li>Scope is defined in the Care Plan</li>
+            <li>Any scope change requires supervisor approval + updated care plan</li>
+            <li>Misaligned expectations are resolved via CS within 24 hours</li>
+          </ul>
+        </details>
+
+        <details>
+          <summary>Policy 3 — Replacement Rules</summary>
+          <ul>
+            <li>Replacement SLA depends on package and shift type</li>
+            <li>Floater/bench prioritized for high-risk packages (newborn/night/dementia)</li>
+            <li>Continuity is preferred; replacements should not rotate unnecessarily</li>
+          </ul>
+        </details>
+      </div>
+    </section>
+
+    <div class="footer">
+      <p>
+        Document: <b>EzyHelpers Care Company — Operating Playbook</b> • Version 1.0 •
+        Print-friendly • Use as an internal ops handbook and training reference.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
